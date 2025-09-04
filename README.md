@@ -26,6 +26,14 @@ Then install the Génie:
 deno install -g -A jsr:@nicorio/genie
 ```
 
+If you want to update to a newer version:
+
+```sh
+deno install -g -f -A jsr:@nicorio/genie@0.2.1
+```
+
+Replace the version number with the one you want.
+
 ## Models
 
 Right now only Google `gemini-2.5-flash` is supported. The GOOGLE_API_KEY environment variable should be available on the system.
