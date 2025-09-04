@@ -79,11 +79,11 @@ Calling the genie with an arbitrary question will start a conversation with him.
 
 ┌  🧞 You woke up the terminal Génie
 │
-│  You:
+●  You:
 │
 │  What is in the current working directory?
 │
-◇  🧞 The Génie
+◇  🧞 The Génie:
 │
 │  The current working directory
 │  contains the following items:

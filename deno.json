@@ -1,6 +1,6 @@
 {
   "name": "@nicorio/genie",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "exports": "./src/main.ts",
   "license": "MIT",
   "imports": {
