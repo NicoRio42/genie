@@ -15,7 +15,7 @@ irm https://deno.land/install.ps1 | iex
 ```
 
 ```sh
-deno install -g -A @nicorio/genie
+deno install -g -A jsr:@nicorio/genie
 ```
 
 ## Models
