@@ -1,0 +1,16 @@
+{
+  "name": "@orienteering-js/genie",
+  "version": "0.1.0",
+  "exports": "./src/main.ts",
+  "license": "MIT",
+  "imports": {
+    "@ai-sdk/google": "npm:@ai-sdk/google@^2.0.11",
+    "@clack/prompts": "npm:@clack/prompts@^0.11.0",
+    "@std/dotenv": "jsr:@std/dotenv@^0.225.5",
+    "ai": "npm:ai@^5.0.30",
+    "zod": "npm:zod@^4.1.5"
+  },
+  "tasks": {
+    "start": "deno run -A ./src/main.ts"
+  }
+}
