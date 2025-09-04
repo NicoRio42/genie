@@ -14,6 +14,8 @@ curl -fsSL https://deno.land/install.sh | sh
 irm https://deno.land/install.ps1 | iex
 ```
 
+Then install the Génie:
+
 ```sh
 deno install -g -A jsr:@nicorio/genie
 ```
