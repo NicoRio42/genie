@@ -105,7 +105,7 @@ class AIChatbot {
 
   async start() {
     console.clear();
-    intro("🧞 The terminal Génie");
+    intro("🧞 You woke up the terminal Génie");
     let isFirstMessage = true;
 
     while (true) {

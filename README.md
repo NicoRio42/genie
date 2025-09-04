@@ -77,13 +77,13 @@ Calling the genie with an arbitrary question will start a conversation with him.
 ```
 ~/$ genie What is in the current working directory?
 
-┌  🧞 The terminal Génie
+┌  🧞 You woke up the terminal Génie
 │
 │  You:
 │
 │  What is in the current working directory?
 │
-◇
+◇  🧞 The Génie
 │
 │  The current working directory
 │  contains the following items:
