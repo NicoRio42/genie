@@ -1,7 +1,6 @@
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import {
   cancel,
-  confirm,
   intro,
   isCancel,
   log,
@@ -186,9 +185,7 @@ if (import.meta.main) {
   const rest = Deno.args.slice(1);
 
   if (command === "run") {
-    intro("🧞 Calling the Génie");
-    const s = spinner();
-    s.start("🤔 The génie is thinking ");
+    console.log("\n🧞 Thinking...");
 
     const { text } = await generateText({
       model: google("gemini-2.5-flash"),
@@ -198,15 +195,11 @@ if (import.meta.main) {
       You can write your reflexion first, and then output the command between the <command> and the </command> tags.`,
     });
 
-    s.stop("💡 The Génie have an idea");
-
     const rawCommand = text.split("<command>")[1].split("</command>")[0].trim();
 
-    log.info(rawCommand);
+    console.log("\n" + rawCommand);
 
-    const shouldExecute = await confirm({
-      message: "Do you want to execute this command?",
-    });
+    const shouldExecute = confirm("Do you want to execute this command?");
 
     if (shouldExecute) {
       const { success, stderr, stdout } = await new Deno.Command("sh", {
@@ -214,13 +207,11 @@ if (import.meta.main) {
       }).output();
 
       if (!success) {
-        log.error("An error occured");
-        log.error(textDecoder.decode(stderr));
+        console.error("\nAn error occured");
+        console.error(textDecoder.decode(stderr));
       } else {
-        log.message(textDecoder.decode(stdout));
+        console.log("\n" + textDecoder.decode(stdout));
       }
-
-      outro("Goodbye");
     }
   } else {
     // Start the chatbot
