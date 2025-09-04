@@ -36,7 +36,7 @@ Replace the version number with the one you want.
 
 ## Models
 
-Right now only Google `gemini-2.5-flash` is supported. The GOOGLE_API_KEY environment variable should be available on the system.
+Right now only Google `gemini-2.5-flash` is supported, because it is free 🤑 and good enouth for the use case. The GOOGLE_API_KEY environment variable should be available on the system.
 
 ## Usage
 
