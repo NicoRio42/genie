@@ -195,23 +195,57 @@ if (import.meta.main) {
       You can write your reflexion first, and then output the command between the <command> and the </command> tags.`,
     });
 
-    const rawCommand = text.split("<command>")[1].split("</command>")[0].trim();
-
+    let rawCommand = text.split("<command>")[1].split("</command>")[0].trim();
     console.log("\n" + rawCommand);
-
     const shouldExecute = confirm("Do you want to execute this command?");
+    if (!shouldExecute) Deno.exit(0);
 
-    if (shouldExecute) {
+    const { success, stderr, stdout } = await new Deno.Command("sh", {
+      args: ["-c", rawCommand],
+    }).output();
+
+    if (success) {
+      console.log("\n" + textDecoder.decode(stdout));
+      Deno.exit(0);
+    }
+
+    let error = textDecoder.decode(stderr);
+
+    while (true) {
+      console.error("❌An error occured");
+      console.error(error);
+
+      const shouldTryToFix = confirm(
+        "Do you want the Génie to try to fix the error?"
+      );
+
+      if (!shouldTryToFix) Deno.exit(0);
+      console.log("\n🧞 Thinking...");
+
+      const { text } = await generateText({
+        model: google("gemini-2.5-flash"),
+        prompt:
+          `I tried to execute this shell command: ${rawCommand}\n\n` +
+          `I got this error:\n${error}\n\n` +
+          `Please fix this command to fix the error. You can write your reflexion first,` +
+          `and then output the command between the <command> and the </command> tags.`,
+      });
+
+      rawCommand = text.split("<command>")[1].split("</command>")[0].trim();
+      console.log("\n" + rawCommand);
+      const shouldExecute = confirm("Do you want to execute this command?");
+      if (!shouldExecute) Deno.exit(0);
+
       const { success, stderr, stdout } = await new Deno.Command("sh", {
         args: ["-c", rawCommand],
       }).output();
 
-      if (!success) {
-        console.error("\nAn error occured");
-        console.error(textDecoder.decode(stderr));
-      } else {
+      if (success) {
         console.log("\n" + textDecoder.decode(stdout));
+        Deno.exit(0);
       }
+
+      error = textDecoder.decode(stderr);
     }
   } else {
     // Start the chatbot
